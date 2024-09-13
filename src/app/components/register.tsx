@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { registerUser } from '../controllers/register.controller';
+import styles from '../style/RegisterForm.module.css';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -27,9 +28,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name:</label>
+    <form onSubmit={handleSubmit} className={styles["form"]}>
+      <div className={styles["formGrup"]}>
+        <label htmlFor="name" >Name:</label>
         <input
           type="text"
           id="name"
@@ -37,10 +38,13 @@ const RegisterForm = () => {
           onChange={(e) => setName(e.target.value)}
           required
           aria-required="true"
+          className={styles["input"]}
+
+         
         />
       </div>
-      <div>
-        <label htmlFor="email">Email:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="email" className={styles["label"]}>Email:</label>
         <input
           type="email"
           id="email"
@@ -48,10 +52,11 @@ const RegisterForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
           aria-required="true"
+          className={styles["input"]}
         />
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="password" className={styles.label}>Password:</label>
         <input
           type="password"
           id="password"
@@ -59,11 +64,12 @@ const RegisterForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
           aria-required="true"
+          className={styles.input}
         />
       </div>
-      {error && <p>{error}</p>}
-      {success && <p >{success}</p>}
-      <button type="submit" >Register</button>
+      {error && <p className={styles.error}>{error}</p>}
+      {success && <p className={styles.success}>{success}</p>}
+      <button type="submit" className={styles.button}>Register</button>
     </form>
   );
 };

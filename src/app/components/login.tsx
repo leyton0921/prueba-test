@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { authenticateUser } from '../controllers/login.controller';
 import Input from '../../UI/input';
 import Button from '../../UI/buttons';
-
+import styles from '../style/LoginForm.module.css'; 
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} >
+    <form onSubmit={handleSubmit} className={styles.form}>
       <Input
         name="Username"
         label="Username:"
@@ -41,24 +41,27 @@ const LoginForm = () => {
         id="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder={''}      />
+        placeholder={'ingrese su correo'}
+        className={styles["input"]}
+      />
       <Input
-      name="Password"
+        name="Password"
         label="Password:"
         type="password"
         id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-         placeholder={''}      />
-      {error && <p >{error}</p>}
+        placeholder={'password'}
+        className={styles["input"]}
+      />
+      {error && <p className={styles.error}>{error}</p>}
       <Button
         type="submit"
         label="Login"
-    
-        onClick={function (): void {
-         console.log("Button clicked");
-        } }      />
-      {message && <p >{message}</p>}
+        onClick={() => console.log("Button clicked")}
+        className={styles["Button"]}
+      />
+      {message && <p className={styles.success}>{message}</p>}
     </form>
   );
 };
