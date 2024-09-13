@@ -8,4 +8,5 @@ export interface IUserToken {
     message?:string;
     token:string;
     user:IUser;
+    suer_id?:number
 }
